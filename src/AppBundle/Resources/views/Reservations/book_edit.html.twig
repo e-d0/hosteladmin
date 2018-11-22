@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  <div class="row">
+    <div class="medium-12 large-12 columns">
+      <h4>Гость/Бронирование</h4>
+      <div class="medium-12  columns">БРОНЬ НА:  <b>{{ client.name }} {{ client.lastName }}</b></div>
+      <br>
+      <form action="{{ path("edit_booking", {'id_reservation': id_reservation }) }}" method="post" name="booking_edit">
+        <div class="medium-1  columns">НОМЕР КОМНАТЫ</div>
+        <div class="medium-2  columns"><input name="form[room]" value="{{room}}" type="text"  readonly="readonly"/></div>
+        <div class="medium-1  columns">С:</div>
+        <div class="medium-2  columns"><input name="form[dateFrom]" value="{{dates.from}}" type="text" class="datepicker" disabled/></div>
+        <div class="medium-1  columns">ПО:</div>
+        <div class="medium-2  columns"><input name="form[dateTo]" value="{{dates.to}}" type="text" class="datepicker" disabled/></div>
+
+        <div class="medium-2  columns"><input class="button" type="submit" value="УДАЛИТЬ РЕЗЕРВ" /></div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

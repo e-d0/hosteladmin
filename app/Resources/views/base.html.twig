@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Гостиничный комлекс "Спасский"{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('css/foundation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.css') }}">
+    <link rel="stylesheet" href="{{ asset('pickadate/lib/themes/default.date.css') }}">
+</head>
+<body>
+
+<!-- Start Top Bar -->
+<div class="top-bar">
+    <div class="row">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li><a href="{{ path("home") }}">Главная</a></li>
+                <li><a href="{{ path("clients_index") }}">Гости</a></li>
+                <li><a href="{{ path("reservations") }}">Все брони</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End Top Bar -->
+
+<br>
+
+{# you can read and display just one flash message type... #}
+{% for message in app.flashes('notice') %}
+    <div class="radius success callout flash-notice" data-closable>
+        {{ message }}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="success callout" data-closable="slide-out-right">
+        {{ message }}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+{% endfor %}
+
+{% block body %}{% endblock %}
+
+
+<div class="row column">
+    <hr>
+    <ul class="menu">
+        <li class="float-right">Copyright 2017</li>
+    </ul>
+</div>
+
+
+
+{% block javascripts %}{% endblock %}
+<script src="{{ asset('js/vendor/jquery.js') }}"></script>
+<script src="{{ asset('js/vendor/what-input.js') }}"></script>
+<script src="{{ asset('js/vendor/foundation.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('pickadate/lib/picker.js') }}"></script>
+<script src="{{ asset('pickadate/lib/picker.date.js') }}"></script>
+<script>
+//    $(document).foundation();
+
+    $('.datepicker').pickadate(
+        {
+            format: 'yyyy-mm-dd',
+            formatSubmit: 'yyyy-mm-dd'
+        }
+    );
+</script>
+
+</body>
+</html>
+

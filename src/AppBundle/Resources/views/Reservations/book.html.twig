@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+  <div class="row">
+    <div class="medium-12 large-12 columns">
+      <h4>Гости/Бронирование</h4>
+      <div class="medium-2  columns">ЗАБРОНИРОВАТЬ НА:  </div>
+      <div class="medium-2  columns"><b>{{ client.name }} {{ client.lastName }}</b></div>
+      <form action="{{ path('booking', {'id_client': client.id}) }}" method="post" name="booking">
+        <div class="medium-1  columns">С:</div>
+        <div class="medium-2  columns"><input name="form[dateFrom]" value="{{dates.from}}" type="text" class="datepicker" /></div>
+        <div class="medium-1  columns">ПО:</div>
+        <div class="medium-2  columns"><input name="form[dateTo]" value="{{dates.to}}" type="text" class="datepicker" /></div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('booking') }}">
+        <div class="medium-2  columns"><input class="button" type="submit" value="SEARCH" /></div>
+      </form>
+
+      <table class="stack">
+        <thead>
+        <tr>
+          <th width="200">Номер</th>
+          <th width="200">Доступность</th>
+          <th width="200">Действие</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for room in rooms %}
+          <tr>
+            <td>{{room.name}}</td>
+            <td>
+              <div class="callout success">
+                <h7>Свободно</h7>
+              </div>
+            </td>
+            <td>
+              <a class="hollow button warning" href="{{ path('book_room', {'id_client': client.id, 'id_room': room.id, 'date_in': dates.from, 'date_out': dates.to}) }}">БРОНИРОВАТЬ СЕЙЧАС</a>
+            </td>
+          </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

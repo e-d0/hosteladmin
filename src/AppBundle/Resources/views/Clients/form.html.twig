@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+
+          <h4>{{ data.mode == 'add_client' ? 'Добавить гостя' : 'Редактировать гостя' }}</h4>
+
+          {{ form_start(form) }}
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Обращение',
+                  })
+                  }}
+                  {{ form_widget(form.title) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                          'label': 'Имя',
+                      })
+                  }}
+                  {{ form_widget(form.name, {'attr': {'class': 'foo'}}) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Фамилия',
+                  })
+                  }}
+                  {{ form_widget(form.last_name) }}
+              </div>
+              <div class="medium-8  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Адрес',
+                  })
+                  }}
+                  {{ form_widget(form.address) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Почтовый индекс',
+                  })
+                  }}
+                  {{ form_widget(form.zip_code) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Город',
+                  })
+                  }}
+                  {{ form_widget(form.city) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Область',
+                  })
+                  }}
+                  {{ form_widget(form.state) }}
+              </div>
+              <div class="medium-4  columns">
+                  {{ form_label(form.name, null, {
+                      'label': 'Email',
+                  })
+                  }}
+                  {{ form_widget(form.email) }}
+              </div>
+              <div class="medium-12  columns">
+                  {{ form_widget(form.save, { 'label': 'Сохранить' }) }}
+              </div>
+          {{ form_end(form) }}
+
+      </div>
+    </div>
+
+{% endblock %}

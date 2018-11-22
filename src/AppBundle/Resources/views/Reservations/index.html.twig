@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+      <div class="medium-12 large-12 columns">
+        <h4>Текущие бронирования</h4>
+
+        <table class="stack">
+          <thead>
+            <tr>
+              <th width="200">Комната</th>
+              <th width="200">Имя\Фамилия</th>
+              <th width="200">Даты</th>
+              <th width="200">Действия</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in data  %}
+                <tr>
+                  <td>{{ row.room_name }}</td>
+                  <td>{{ row.title | capitalize }} {{ row.name }} {{ row.last_name }}</td>
+                  <td>С {{ row.date_in }} <br> ПО {{ row.date_out }}</td>
+                  <td> <a class="hollow button warning" href="{{ path("edit_booking", {'id_reservation':  row.reservation_id  }) }}">РЕДАКТИРОВАТЬ БРОНЬ</a></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+{% endblock %}
